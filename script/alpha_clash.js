@@ -40,29 +40,33 @@ function removeBackgroundColor(elementId) {
 // utility end 
 
 // to match the keyboard key and random alphabet 
-function handleKeyboardButtonPress(event){
-    // console.log(event)// if we do console.log(event)then we find the all the property of the event ...but we need key >>> so that we can match the return alphabet ...
-    // console.log(event.key)//we find the keyboard key ;
+function handleKeyboardButtonPress(event) {
 
-    const playerPressed = event.key;
+    // console.log(event)// if we do console.log(event)then we find the all the property of the event ...but we need key >>> so that we can match the return alphabet ...
+    // console.log(event.key)//we find the keyboard key 
+    const playerPressed=event.key;
     console.log('press key', playerPressed);
     //get the expected to press
     const currentAlphabetElement=document.getElementById('letter');
     const currentAlphabet=currentAlphabetElement.innerText;
-    const expectedAlphabet = currentAlphabet.toLowerCase();
+    const expectedAlphabet=currentAlphabet.toLowerCase();
 
     console.log('the alphabet is ', expectedAlphabet);
-    console.log(playerPressed,expectedAlphabet)
-
-    if(playerPressed===expectedAlphabet){
-        console.log('win')
-    }
-    else{
-        console.log('loss')
-    }
   
+    if(playerPressed === expectedAlphabet){
+        console.log('you got a point');
+        console.log('you have pressed currently',expectedAlphabet);
+        removeBackgroundColor(expectedAlphabet);
+        continueGame();
+    }
+
+    else{
+        console.log('you press wrong');
+    }
+
+
 }
-document.addEventListener('keyup', handleKeyboardButtonPress)
+document.addEventListener('keyup',handleKeyboardButtonPress)
 
 
 function continueGame() {
@@ -72,9 +76,9 @@ function continueGame() {
     // set random alphabet to display 
     const currentAlphabet = document.getElementById('letter');
     currentAlphabet.innerText = alphabet;
-    // console.log('continuegame alphabet',alphabet)
+ console.log('continuegame alphabet', alphabet)
 
-   
+
     //set background color:
     setBackgruondColor(alphabet);
 
